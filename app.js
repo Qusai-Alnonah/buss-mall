@@ -6,42 +6,47 @@ let secandimageElement = document.getElementById('secand-image');
 let counts = 0;
 let maxAttempts = 5;
 let firstIndex;
-let secoandIndex;
-//let therdIndex;
+let secoandIndex ;
+Product.allImage=[];
+// let therdIndex=null;
 
 
-function Product(name,source,time){
+function Product(name,source){
     this.name =name;
     this.source =source;
-    //this.timeShown = 0;
+    this.timeShown = 0;
     this.votes = 0 ;
     Product.allImage.push(this);
 }
 Product.allImage =[];
 
-new Product('bag','bag.jpg','10s');
-new Product('banana','lab-image/assets/banana.jpg','15s');
-new Product('bathroom','lab-image/assets/bathroom.jpg','20s');
-new Product('boots','lab-image/assets/boots.jpg','10s');
-new Product('breakfast','lab-image/assets/breakfast.jpg','15s');
-new Product('bubblegum','lab-image/assets/bubblegum.jpg','20s');
-new Product('chair','lab-image/assets/chair.jpg','10s');
-new Product('cthulhu','lab-image/assets/cthulhu.jpg','15s');
-new Product('dog-duck','lab-image/assets/dog-duck.jpg','20s');
-new Product('dragon','lab-image/assets/dragon.jpg','10s');
-new Product('pen','lab-image/assets/pen.jpg','15s');
-new Product('pet-sweep','lab-image/assets/pet-sweep.jpg','20s');
-new Product('scissors','lab-image/assets/scissors.jpg','10s');
-new Product('shark','lab-image/assets/shark.jpg','15s');
-new Product('sweep','lab-image/assets/sweep.png','20s');
-new Product('tauntaun','lab-image/assets/tauntaun.jpg','15s');
-new Product('unicorn','lab-image/assets/unicorn.jpg','20s');
-new Product('usb','lab-image/assets/usb.gif','10s');
-new Product('water-can','lab-image/assets/water-can.jpg','15s');
-new Product('wine-glass','lab-image/assets/wine-glass.jpg','20s');
+new Product('bag','bag.jpg');
+new Product('banana','lab-image/assets/banana.jpg');
+new Product('bathroom','lab-image/assets/bathroom.jpg');
+new Product('boots','lab-image/assets/boots.jpg');
+new Product('breakfast','lab-image/assets/breakfast.jpg');
+new Product('bubblegum','lab-image/assets/bubblegum.jpg');
+new Product('chair','lab-image/assets/chair.jpg');
+new Product('cthulhu','lab-image/assets/cthulhu.jpg');
+new Product('dog-duck','lab-image/assets/dog-duck.jpg');
+new Product('dragon','lab-image/assets/dragon.jpg');
+new Product('pen','lab-image/assets/pen.jpg');
+new Product('pet-sweep','lab-image/assets/pet-sweep.jpg');
+new Product('scissors','lab-image/assets/scissors.jpg');
+new Product('shark','lab-image/assets/shark.jpg');
+new Product('sweep','lab-image/assets/sweep.png');
+new Product('tauntaun','lab-image/assets/tauntaun.jpg');
+new Product('unicorn','lab-image/assets/unicorn.jpg');
+new Product('usb','lab-image/assets/usb.gif');
+new Product('water-can','lab-image/assets/water-can.jpg');
+new Product('wine-glass','lab-image/assets/wine-glass.jpg');
+
+
+
+
 
 function renderThreeImages(){
-    firstIndex = genrateRandomIndex();
+   firstIndex = genrateRandomIndex();
     secoandIndex = genrateRandomIndex();
   //  therdIndex = genrateRandomIndex();
 
@@ -51,7 +56,7 @@ while(firstIndex === secoandIndex){ //||firstIndex ===therdIndex ||secoandIndex 
     //therdIndex= genrateRandomIndex();
     firstIndex = genrateRandomIndex();
 }
-
+//console.log(firstImageElement)
 firstImageElement.src = Product.allImage[firstIndex].source;
 secandimageElement.src= Product.allImage[secoandIndex].source;
 //therdImageElement.src = Product.allImage[therdIndex].source;
@@ -87,8 +92,7 @@ function renderList(){
         li.textContent = `${Product.allImag[i].name}it has ${Product.allImage[i].votes}Votes`
     }
 }
-
-function genratrRandomIndex(){
+function genrateRandomIndex(){
     return Math.floor(Math.random()*Product.allImage.length);
 
 }
