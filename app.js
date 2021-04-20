@@ -1,5 +1,5 @@
 'use strict';
-let Product =['bag.png','banana.jpg','bathroom.jpg','assets/bathroom.jpg','assets/breakfast.jpg','assets/bubblegum.jpg','assets/chair.jpg','assets/cthulhu.jpg','assets/dog-duck.jpg','assets/dragon.jpg','assets/pen.jpg','assets/scissors.jpg','assets/shark.jpg','assets/sweep.png','assets/tauntaun.jpg','assets/unicorn.jpg','assets/usb.gif','assets/water-can.jpg','assets/wine-glass.jpg'];
+//let ;
 let firstImageElement = document.getElementById('first-image');
 let secandimageElement = document.getElementById('secand-image');
 let therdImageElement = document.getElementById('therd-image');
@@ -45,26 +45,30 @@ new Product('water-can','assets/water-can.jpg');
 new Product('wine-glass','assets/wine-glass.jpg');
 
 
-
+let previouslyShown =[];
 
 
 function renderThreeImages(){
+    console.log('Berofe',previouslyShown);
    firstIndex = genrateRandomIndex();
     secoandIndex = genrateRandomIndex();
     therdIndex = genrateRandomIndex();
 
 
 
-while(firstIndex === secoandIndex||firstIndex ===therdIndex ||secoandIndex ===therdIndex){
+while(firstIndex === secoandIndex||firstIndex ===therdIndex ||secoandIndex ===therdIndex|| previouslyShown.includes(firstIndex)||previouslyShown.includes(secoandIndex)||previouslyShown.includes(therdIndex)){
     therdIndex = genrateRandomIndex();
     firstIndex = genrateRandomIndex();
+    secoandIndex= genrateRandomIndex();
 }
 
 firstImageElement.src = Product.allImage[firstIndex].source;
 secandimageElement.src= Product.allImage[secoandIndex].source;
 therdImageElement.src = Product.allImage[therdIndex].source;
 
-}
+};
+console.log('after',previouslyShown);
+previouslyShown = [firstIndex,secoandIndex,therdIndex];
 
 renderThreeImages();
 containar.addEventListener('click',handleClicking);
@@ -135,7 +139,7 @@ let ctx = document.getElementById('myChart')
 let myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: Product =['bag','banana','bathroom','breakfastx','bubblegum','chair','cthulhu','dog-duck','dragon','pen','scissors','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'],
         datasets: [{
             label: 'Product  Votes',
             data: [25, 19, 10, 5, 2, 3],
