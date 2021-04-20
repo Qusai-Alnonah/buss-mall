@@ -1,17 +1,16 @@
 'use strict';
-//let ;
+
 let firstImageElement = document.getElementById('first-image');
 let secandimageElement = document.getElementById('secand-image');
 let therdImageElement = document.getElementById('therd-image');
 let containar = document.getElementById('sec-one');
-let Shown = 0;
+//let Shown = 0;
 let counts = 0;
 let maxAttempts = 25;
 let firstIndex;
 let secoandIndex ;
 let therdIndex;
-
-
+let arrOfnames =[];
 
 
 function Product(name,source){
@@ -20,6 +19,7 @@ function Product(name,source){
     this.votes = 0 ;
     this.shown = 0 ;
     Product.allImage.push(this);
+    arrOfnames.push(this.name);
 }
 Product.allImage =[];
 
@@ -46,7 +46,13 @@ new Product('wine-glass','assets/wine-glass.jpg');
 
 
 let previouslyShown =[];
-
+function checking(idx,arr){
+    for(let i=0;i<arr.length;i++){
+        if(idx=== arr[i]){
+            return true
+        }
+    }return false
+}
 
 function renderThreeImages(){
     console.log('Berofe',previouslyShown);
@@ -57,14 +63,19 @@ function renderThreeImages(){
 
 
 while(firstIndex === secoandIndex||firstIndex ===therdIndex ||secoandIndex ===therdIndex|| previouslyShown.includes(firstIndex)||previouslyShown.includes(secoandIndex)||previouslyShown.includes(therdIndex)){
-    therdIndex = genrateRandomIndex();
     firstIndex = genrateRandomIndex();
     secoandIndex= genrateRandomIndex();
-}
+    therdIndex = genrateRandomIndex();
+};
+    
+  previouslyShown = [firstIndex,secoandIndex,therdIndex]  
 
 firstImageElement.src = Product.allImage[firstIndex].source;
+Product.allImage[firstIndex].shown++;
 secandimageElement.src= Product.allImage[secoandIndex].source;
+Product.allImage[secoandIndex].shown++;
 therdImageElement.src = Product.allImage[therdIndex].source;
+Product.allImage[therdIndex].shown++;
 
 };
 console.log('after',previouslyShown);
@@ -87,6 +98,10 @@ function handleClicking(event){
             Product.allImage[therdIndex].votes++;
         }
         renderThreeImages();
+    }else {
+        renderList();
+        chart();
+        containar.removeEventListener('click',handleClicking)
     }
         
     
@@ -116,7 +131,8 @@ function showningList(){
       
   
 }
-
+let arrOfVotes =[];
+let arrOfShown =[];
 
 function renderList(){
     let ul =document.getElementById('unlist');
@@ -127,6 +143,7 @@ function renderList(){
         li.textContent = `${Product.allImag[i].name}it has ${Product.allImage[i].votes}Votes`
     }
 }
+
 function genrateRandomIndex(){
     return Math.floor(Math.random()*Product.allImage.length);
 
@@ -139,10 +156,10 @@ let ctx = document.getElementById('myChart')
 let myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: Product =['bag','banana','bathroom','breakfastx','bubblegum','chair','cthulhu','dog-duck','dragon','pen','scissors','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'],
+        labels: arrOfnames,
         datasets: [{
             label: 'Product  Votes',
-            data: [25, 19, 10, 5, 2, 3],
+            data: arrOfVotes,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                
