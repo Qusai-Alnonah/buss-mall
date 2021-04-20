@@ -1,4 +1,5 @@
 'use strict';
+let Product =['bag.png','banana.jpg','bathroom.jpg','assets/bathroom.jpg','assets/breakfast.jpg','assets/bubblegum.jpg','assets/chair.jpg','assets/cthulhu.jpg','assets/dog-duck.jpg','assets/dragon.jpg','assets/pen.jpg','assets/scissors.jpg','assets/shark.jpg','assets/sweep.png','assets/tauntaun.jpg','assets/unicorn.jpg','assets/usb.gif','assets/water-can.jpg','assets/wine-glass.jpg'];
 let firstImageElement = document.getElementById('first-image');
 let secandimageElement = document.getElementById('secand-image');
 let therdImageElement = document.getElementById('therd-image');
@@ -62,14 +63,14 @@ while(firstIndex === secoandIndex||firstIndex ===therdIndex ||secoandIndex ===th
 firstImageElement.src = Product.allImage[firstIndex].source;
 secandimageElement.src= Product.allImage[secoandIndex].source;
 therdImageElement.src = Product.allImage[therdIndex].source;
-containar.addEventListener('click',handleClicking);
+
 }
 
 renderThreeImages();
-
-firstImageElement.addEventListener('click',handleClicking);
-secandimageElement.addEventListener('click',handleClicking);
-therdImageElement.addEventListener('click',handleClicking);
+containar.addEventListener('click',handleClicking);
+// firstImageElement.addEventListener('click',handleClicking);
+// secandimageElement.addEventListener('click',handleClicking);
+// therdImageElement.addEventListener('click',handleClicking);
 
 function handleClicking(event){
     counts++;
@@ -82,41 +83,43 @@ function handleClicking(event){
             Product.allImage[therdIndex].votes++;
         }
         renderThreeImages();
-    }else {
-        renderList()
-        firstImageElement.removeEventListener
-        ('click',handleClicking);
-        removeEventListener('click',handleClicking);
-        )
-        secandimageElement.removeEventListener
-        ('click',handleClicking);
-        removeEventListener('click',handleClicking);
-        
-        therdImageElement.removeEventListener
-        ('click',handleClicking);
-        removeEventListener('click',handleClicking);
-        
-        containar.removeEventListener
-        ('click',handleClicking);
-        removeEventListener('click',handleClicking);
     }
+        
+    
     }
     
     
 let button =document.getElementById('btn');
 button.addEventListener('click',showningList);
 function showningList(){
-  renderList();
-  renderList();
-  renderList();
-  renderList();
+    containar.removeEventListener
+    ('click',handleClicking);
+    removeEventListener('click',handleClicking);
+    renderList();  
+    //renderList()
+        // firstImageElement.removeEventListener
+        // ('click',handleClicking);
+        // removeEventListener('click',handleClicking);
+        // renderList()
+        // secandimageElement.removeEventListener
+        // ('click',handleClicking);
+        // removeEventListener('click',handleClicking);
+        // renderList()
+        // therdImageElement.removeEventListener
+        // ('click',handleClicking);
+        // removeEventListener('click',handleClicking);
+        // renderList()
+      
+  
 }
+
 
 function renderList(){
     let ul =document.getElementById('unlist');
     for(let i = 0; i< Product.allImage.length;i++){
         let li = document.createElement('li');
         ul.appendChild(li);
+        console.log(allImag)
         li.textContent = `${Product.allImag[i].name}it has ${Product.allImage[i].votes}Votes`
     }
 }
@@ -134,23 +137,15 @@ let myChart = new Chart(ctx, {
     data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Product  Votes',
+            data: [25, 19, 10, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+               
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                
             ],
             borderWidth: 1
         }]
