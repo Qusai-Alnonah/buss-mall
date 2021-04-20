@@ -2,6 +2,7 @@
 let firstImageElement = document.getElementById('first-image');
 let secandimageElement = document.getElementById('secand-image');
 let therdImageElement = document.getElementById('therd-image');
+let containar = document.getElementById('sec-one');
 let Shown = 0;
 let counts = 0;
 let maxAttempts = 25;
@@ -21,7 +22,7 @@ function Product(name,source){
 }
 Product.allImage =[];
 
-new Product('bag','assets/bag.png');
+new Product('bag','assets/bag.jpg');
 new Product('banana','assets/banana.jpg');
 new Product('bathroom','assets/bathroom.jpg');
 new Product('boots','assets/bathroom.jpg');
@@ -61,6 +62,7 @@ while(firstIndex === secoandIndex||firstIndex ===therdIndex ||secoandIndex ===th
 firstImageElement.src = Product.allImage[firstIndex].source;
 secandimageElement.src= Product.allImage[secoandIndex].source;
 therdImageElement.src = Product.allImage[therdIndex].source;
+containar.addEventListener('click',handleClicking);
 }
 
 renderThreeImages();
@@ -73,16 +75,41 @@ function handleClicking(event){
     counts++;
     if(maxAttempts >=counts){
         if(event.target.id==='first-image'){
-            Product.allImage[secandimageElement];
+            Product.allImage[firstIndex].votes++;
         }else if(event.target.id ==='secand-image'){
             Product.allImage[secoandIndex].votes++;
-        }renderThreeImages();
+        }else if(event.target.id ==='therd-image'){
+            Product.allImage[therdIndex].votes++;
+        }
+        renderThreeImages();
     }else {
         renderList()
         firstImageElement.removeEventListener
         ('click',handleClicking);
         removeEventListener('click',handleClicking);
+        )
+        secandimageElement.removeEventListener
+        ('click',handleClicking);
+        removeEventListener('click',handleClicking);
+        
+        therdImageElement.removeEventListener
+        ('click',handleClicking);
+        removeEventListener('click',handleClicking);
+        
+        containar.removeEventListener
+        ('click',handleClicking);
+        removeEventListener('click',handleClicking);
     }
+    }
+    
+    
+let button =document.getElementById('btn');
+button.addEventListener('click',showningList);
+function showningList(){
+  renderList();
+  renderList();
+  renderList();
+  renderList();
 }
 
 function renderList(){
